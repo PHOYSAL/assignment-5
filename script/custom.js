@@ -41,7 +41,9 @@ document.getElementById("card-container").addEventListener("click",function(even
         // `
         // historyContainer.appendChild(newDiv)
 
-        
+        const now=new Date();
+        const time=now.toLocaleTimeString();
+        const localeTime=time;
         if(callCoin>0){
             alert(`Calling ${title} ${callNumber}...`)
             const afterCallCoin=callCoin-20;
@@ -54,7 +56,7 @@ document.getElementById("card-container").addEventListener("click",function(even
                                     <p class="text-gray-500">${callNumber}</p>
                                 </div>
                                 <div>
-                                    <span class="text-gray-500">2:49 PM</span>
+                                    <span class="text-gray-500">${localeTime}</span>
                                 </div>
                             </div>
         `
