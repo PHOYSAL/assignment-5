@@ -15,37 +15,24 @@ document.getElementById("card-container").addEventListener("click", function (ev
 
 })
 document.getElementById("card-container").addEventListener("click",function(event){
-    // console.log(event.target.className.includes("call-btn"))
+    
     if(event.target.className.includes("call-btn")){
         const btn=event.target;
-        // console.log(btn)
+        
         const title=btn.parentNode.parentNode.children[1].children[0].innerText;
         const callNumber=btn.parentNode.parentNode.children[1].children[2].innerText
-        // console.log(callNumber)
-        // alert(`${title} and ${callNumber}`)
-        // console.log(customElement("call-coin").innerText)
+        
         const callCoin=Number(customElement("call-coin").innerText)
         const historyContainer=customElement("history-container");
-        // console.log(historyContainer)
+       
         const newDiv=document.createElement("div")
-        // newDiv.innerHTML=`
-        // <div class="bg-[#D4D6D5] p-5 rounded-lg flex justify-between items-center mb-2">
-        //                         <div>
-        //                             <h2 class="font-bold">${title}</h2>
-        //                             <p class="text-gray-500">${callNumber}</p>
-        //                         </div>
-        //                         <div>
-        //                             <span class="text-gray-500">12:19:32 AM</span>
-        //                         </div>
-        //                     </div>
-        // `
-        // historyContainer.appendChild(newDiv)
+        
 
         const now=new Date();
         const time=now.toLocaleTimeString();
         const localeTime=time;
         if(callCoin>0){
-            alert(`Calling ${title} ${callNumber}...`)
+            alert(`📞Calling ${title} ${callNumber}...`)
             const afterCallCoin=callCoin-20;
             customElement("call-coin").innerText=afterCallCoin;
 
@@ -63,7 +50,7 @@ document.getElementById("card-container").addEventListener("click",function(even
         historyContainer.appendChild(newDiv)
         }
         else{
-            alert("You have no sufficient coins. Need 20 coins or more...");
+            alert("❌You have no sufficient coins. Need 20 coins or more...");
             
         }
     }
@@ -71,4 +58,22 @@ document.getElementById("card-container").addEventListener("click",function(even
         customElement("history-container").innerText=""
     });
     
+})
+
+document.getElementById("card-container").addEventListener("click",function(event){
+    
+    if(event.target.className.includes("copy-btn")){
+        const copyBtn=event.target;
+        const copyNumber=copyBtn.parentNode.parentNode.children[1].children[2].innerText;
+        
+        
+        const copyCount=Number(customElement("copy-count").innerText);
+        
+        navigator.clipboard.writeText(copyNumber)
+        .then(()=>{
+            alert(`${copyNumber} is copied`);
+            let updateCopyCount=copyCount+1;
+            customElement("copy-count").innerText=updateCopyCount;
+        })
+    }
 })
